@@ -17,7 +17,7 @@ void call(Map pipelineParams) {
                     // Example: sh 'nvm install 14'
 
                     // Install project dependencies using npm
-                    sh 'npm ci'
+                    // sh 'npm ci'
                 }
             }
 
@@ -31,7 +31,7 @@ void call(Map pipelineParams) {
             stage('Build') {
                 steps {
                     // Build your NodeJS application
-                    sh 'npm run dev'
+                    // sh 'npm run dev'
                 }
             }
 

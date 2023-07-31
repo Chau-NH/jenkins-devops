@@ -17,14 +17,14 @@ void call(Map pipelineParams) {
                     // Example: sh 'nvm install 14'
 
                     // Install project dependencies using npm
-                    sh 'npm ci'
+                    // sh 'npm ci'
                 }
             }
 
             stage('Build') {
                 steps {
                     // Build your ReactJS application
-                    sh 'npm start'
+                    // sh 'npm start'
                 }
             }
 
