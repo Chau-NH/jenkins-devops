@@ -7,6 +7,7 @@ void call(Map pipelineParams) {
             stage('Checkout') {
                 steps {
                     // Checkout source code from GIT
+                    echo "Checkout git frontend"
                 }
             }
 

@@ -7,6 +7,7 @@ void call(Map pipelineParams) {
             stage('Checkout') {
                 steps {
                     // Checkout from GIT
+                    echo "Checkout git backend"
                 }
             }
 
