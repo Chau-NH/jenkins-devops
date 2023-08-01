@@ -15,19 +15,20 @@ void call(Map pipelineParams) {
                 steps {
                     // Install Node.js and npm on the Jenkins agent if not already available
                     // You can use a tool like Node Version Manager (NVM) for this purpose
-                    // Example: sh 'nvm install 14'
+                    // Example: sh 'nvm install 13'
 
                     // Install project dependencies using npm
                     sh 'npm ci'
                 }
             }
 
-            // stage('Test') {
-            //     steps {
-            //         // Run tests
-            //         // Example: sh 'npm test'
-            //     }
-            // }
+            stage('Test') {
+                steps {
+                    // Run tests ()
+                    // Note: There is not script test in backend source
+                    sh 'npm test'
+                }
+            }
 
             // stage('Build Image') {
             //     steps {
