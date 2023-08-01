@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 void call(Map pipelineParams) {
+    String name = 'backend'
+    String devopsRegistry = 'Registy on AWS (ECR)'
     pipeline {
         agent any
 
@@ -37,32 +39,29 @@ void call(Map pipelineParams) {
                 }
             }
 
-            // stage('Build Image') {
+            stage('Build Docker Image') {
+                steps {
+                    // Build Docker Image for Application
+                    script {
+                        docker.build('backend')
+                    }
+                }
+            }
+
+            // stage('Push Docker Image') {
             //     steps {
-            //         // Build your NodeJS application
-            //         // sh 'npm run dev'
+            //         docker.withRegistry('', '') {
+            //             sh "docker login ${devopsRegistry} -u ${USERNAME} -p ${PASSWORD}"
+            //             sh "docker push ${devopsRegistry}/${name}:${BUILD_NUMBER}"
+            //         }
             //     }
             // }
 
-            // stage('Deploy') {
+            // stage('Deploy to K8S') {
             //     steps {
-
+                        // sh 'kubectl apply -f resources/backend.yml'
             //     }
             // }
         }
-
-        // post {
-        //     always {
-        //         // Cleanup steps or post-processing, if needed
-        //     }
-
-        //     success {
-        //         // Actions to perform when the pipeline succeeds
-        //     }
-
-        //     failure {
-        //         // Actions to perform when the pipeline fails
-        //     }
-        // }
     } 
 }
