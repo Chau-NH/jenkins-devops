@@ -3,11 +3,18 @@ void call(Map pipelineParams) {
     pipeline {
         agent any
 
+        options {
+            disableConcurrentBuilds()
+            disableResume()
+            timeout(time: 1, unit: 'HOURS')
+        }
+
         stages {
             stage('Checkout') {
                 steps {
                     // Checkout from GIT
                     sh 'git checkout main'
+                    sh 'git pull'
                 }
             }
 
