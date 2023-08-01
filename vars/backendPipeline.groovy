@@ -7,20 +7,20 @@ void call(Map pipelineParams) {
             stage('Checkout') {
                 steps {
                     // Checkout from GIT
-                    echo "Checkout git backend"
+                    sh 'git checkout main'
                 }
             }
 
-            // stage('Install Dependencies') {
-            //     steps {
-            //         // Install Node.js and npm on the Jenkins agent if not already available
-            //         // You can use a tool like Node Version Manager (NVM) for this purpose
-            //         // Example: sh 'nvm install 14'
+            stage('Install Dependencies') {
+                steps {
+                    // Install Node.js and npm on the Jenkins agent if not already available
+                    // You can use a tool like Node Version Manager (NVM) for this purpose
+                    // Example: sh 'nvm install 14'
 
-            //         // Install project dependencies using npm
-            //         // sh 'npm ci'
-            //     }
-            // }
+                    // Install project dependencies using npm
+                    sh 'npm ci'
+                }
+            }
 
             // stage('Test') {
             //     steps {
@@ -29,7 +29,7 @@ void call(Map pipelineParams) {
             //     }
             // }
 
-            // stage('Build') {
+            // stage('Build Image') {
             //     steps {
             //         // Build your NodeJS application
             //         // sh 'npm run dev'
