@@ -1,7 +1,8 @@
 #!/usr/bin/env groovy
 void call(Map pipelineParams) {
     String name = 'backend'
-    String devopsRegistry = 'Registy on AWS (ECR)'
+    String ecrUrl = '480566855108.dkr.ecr.us-east-1.amazonaws.com'
+
     pipeline {
         agent any
 
@@ -42,16 +43,15 @@ void call(Map pipelineParams) {
             stage('Build Docker Image') {
                 steps {
                     // Build Docker Image for Application
-                    sh 'docker build . -t backend'
+                    sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${ecrUrl}"
+                    sh "docker build -t ${name} ."
                 }
             }
 
             // stage('Push Docker Image') {
             //     steps {
-            //         docker.withRegistry('', '') {
-            //             sh "docker login ${devopsRegistry} -u ${USERNAME} -p ${PASSWORD}"
-            //             sh "docker push ${devopsRegistry}/${name}:${BUILD_NUMBER}"
-            //         }
+            //         sh "docker tag ${name}:latest ${ecrUrl}/${name}:latest"
+            //         sh "docker push ${ecrUrl}/${name}latest" 
             //     }
             // }
 
