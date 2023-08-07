@@ -37,9 +37,11 @@ void call(Map pipelineParams) {
             stage('Build Docker Image') {
                 steps {
                     // Build Docker Image for Application
-                    sh "aws ecr get-login-password --region us-east-1"
-                    // sh "docker login --username AWS --password-stdin ${ecrUrl}"
-                    // sh "docker build -t ${name} ."
+                    withAWS(credentials: 'aws-credentials') {
+                        sh "aws ecr get-login-password --region us-east-1"
+                        sh "docker login --username AWS --password-stdin ${ecrUrl}"
+                        sh "docker build -t ${name} ."
+                    }
                 }
             }
 
