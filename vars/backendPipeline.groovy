@@ -14,7 +14,7 @@ void call(Map pipelineParams) {
                     sh 'git pull'
                 }
             }
-
+            
             stage('Install Dependencies') {
                 steps {
                     // Install Node.js and npm on the Jenkins agent if not already available
@@ -22,7 +22,7 @@ void call(Map pipelineParams) {
                     // Example: sh 'nvm install 13'
 
                     // Install project dependencies using npm
-                    sh 'npm ci'
+                    sh 'npm install'
                 }
             }
 
