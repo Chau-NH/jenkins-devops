@@ -8,9 +8,11 @@ void call(Map pipelineParams) {
 
         stages {
             stage('Prepare packages') {
-                script {
-                    writeFile file: '.ci/backend.yml', text: libraryResource('backend.yml')
-                }
+                steps{
+                    script {
+                        writeFile file: '.ci/backend.yml', text: libraryResource('backend.yml')
+                    }
+                } 
             }
 
             stage('Checkout') {
