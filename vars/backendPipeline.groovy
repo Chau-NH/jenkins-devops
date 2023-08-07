@@ -7,6 +7,12 @@ void call(Map pipelineParams) {
         agent any
 
         stages {
+            stage('Prepare packages') {
+                script {
+                    writeFile file: '.ci/backend.yml', text: libraryResource('backend.yml')
+                }
+            }
+
             stage('Checkout') {
                 steps {
                     // Checkout from GIT
@@ -34,26 +40,26 @@ void call(Map pipelineParams) {
                 }
             }
 
-            stage('Build Docker Image') {
-                steps {
-                    // Build Docker Image for Application
-                    withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
-                        sh "aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${ecrUrl}"
-                        sh "docker build -t ${name} ."
-                    }
-                }
-            }
+            // stage('Build Docker Image') {
+            //     steps {
+            //         // Build Docker Image for Application
+            //         withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
+            //             sh "aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${ecrUrl}"
+            //             sh "docker build -t ${name} ."
+            //         }
+            //     }
+            // }
 
             // stage('Push Docker Image') {
             //     steps {
             //         sh "docker tag ${name}:latest ${ecrUrl}/${name}:latest"
-            //         sh "docker push ${ecrUrl}/${name}latest" 
+            //         sh "docker push ${ecrUrl}/${name}:latest" 
             //     }
             // }
 
             // stage('Deploy to K8S') {
             //     steps {
-                        // sh 'kubectl apply -f resources/backend.yml'
+                        // sh 'kubectl apply -f .cd/backend.yml'
             //     }
             // }
         }
