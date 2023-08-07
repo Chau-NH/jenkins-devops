@@ -6,6 +6,8 @@ void call(Map pipelineParams) {
     pipeline {
         agent any
 
+        tools {nodejs "nodejs"}
+        
         options {
             disableConcurrentBuilds()
             disableResume()

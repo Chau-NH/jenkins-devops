@@ -19,7 +19,6 @@ void call(Map pipelineParams) {
                     sh 'git checkout main'
                     sh 'git pull'
                 }
-                }
             }
 
             stage('Install Dependencies') {
