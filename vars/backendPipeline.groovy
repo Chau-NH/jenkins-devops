@@ -28,7 +28,7 @@ void call(Map pipelineParams) {
                     // Example: sh 'nvm install 13'
 
                     // Install project dependencies using npm
-                    sh 'npm ci'
+                    sh 'sudo npm ci'
                 }
             }
 
