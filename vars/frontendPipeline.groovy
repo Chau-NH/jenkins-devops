@@ -46,8 +46,8 @@ void call(Map pipelineParams) {
                 steps {
                     withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
                         sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
-                        sh "kubectl config set-context --current --namespace eks-ns"
                         sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
+                        sh "kubectl config set-context --current --namespace eks-ns"
                         sh "kubectl apply -f .cd/${name}.yaml"
                     }
                 }
