@@ -35,16 +35,19 @@ void call(Map pipelineParams) {
                     // Build Docker Image for Application
                     withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
                         sh "aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${ecrUrl}"
-                        sh "docker build -t ${name} ."
+                        sh "docker build --no-cache -t ${name} ."
                         sh "docker tag ${name}:latest ${ecrUrl}/${name}:latest"
                         sh "docker push ${ecrUrl}/${name}:latest" 
                     }
                 }
             }
 
-            // stage('Deploy to K8S') {
+            // stage('Deploy') {
             //     steps {
-            //             sh 'kubectl apply -f .cd/backend.yml'
+            //         withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
+            //             sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
+            //             sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
+            //         }
             //     }
             // }
         }

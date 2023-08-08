@@ -3,6 +3,7 @@ void call(Map pipelineParams) {
     String name = 'frontend'
     String ecrUrl = '480566855108.dkr.ecr.us-east-1.amazonaws.com'
     String awsRegion = 'us-east-1'
+    String clusterName = 'eks-demo'
     pipeline {
         agent any
 
@@ -34,7 +35,7 @@ void call(Map pipelineParams) {
                     // Build Docker Image for Application
                     withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
                         sh "aws ecr get-login-password --region ${awsRegion} | docker login --username AWS --password-stdin ${ecrUrl}"
-                        sh "docker build -t ${name} ."
+                        sh "docker build --no-cache -t ${name} ."
                         sh "docker tag ${name}:latest ${ecrUrl}/${name}:latest"
                         sh "docker push ${ecrUrl}/${name}:latest"
                     }
@@ -43,7 +44,10 @@ void call(Map pipelineParams) {
 
             // stage('Deploy') {
             //     steps {
-
+            //         withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
+            //             sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
+            //             sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
+            //         }
             //     }
             // }
         }
