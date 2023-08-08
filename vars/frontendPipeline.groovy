@@ -51,7 +51,7 @@ void call(Map pipelineParams) {
                             sh "./kubectl config set-context --current --namespace eks-ns"
                             sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
                             sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
-                            sh "./kubectl apply -f .cd/${name}.yaml"
+                            sh "./kubectl rollout restart deploy ${name}"
                         }
                     }
                 }
