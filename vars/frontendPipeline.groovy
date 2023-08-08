@@ -42,14 +42,16 @@ void call(Map pipelineParams) {
                 }
             }
 
-            // stage('Deploy') {
-            //     steps {
-            //         withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
-            //             sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
-            //             sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
-            //         }
-            //     }
-            // }
+            stage('Deploy') {
+                steps {
+                    withAWS(credentials: 'aws-credentials', region: "${awsRegion}") {
+                        sh "aws eks describe-cluster --region ${awsRegion} --name ${clusterName} --query cluster.status"
+                        sh "kubectl config set-context --current --namespace eks-ns"
+                        sh "aws eks --region ${awsRegion} update-kubeconfig --name ${clusterName}"
+                        sh "kubectl apply -f .cd/${name}.yaml"
+                    }
+                }
+            }
         }
     }
 }
