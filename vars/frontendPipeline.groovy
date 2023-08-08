@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 void call(Map pipelineParams) {
-    String name = 'backend'
+    String name = 'frontend'
     String ecrUrl = '480566855108.dkr.ecr.us-east-1.amazonaws.com'
     String awsRegion = 'us-east-1'
     pipeline {
