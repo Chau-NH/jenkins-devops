@@ -9,7 +9,7 @@ void call(Map pipelineParams) {
         stages {
             stage('Checkout') {
                 steps {
-                    // Checkout source code from GIT
+                    // Checkout source code from GIT t
                     sh 'git checkout main'
                     sh 'git pull'
                 }
