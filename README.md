@@ -38,27 +38,27 @@ npm test
 ```
 
 #### Install Jenkins on AWS EC2
-- Step to install a Jenkins server on EC2
-Step 1: Install Jenkins 
-	https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
+Step to install a Jenkins server on EC2
+- Step 1: Install Jenkins
+ 	https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
 	
-Step 2 : Install Docker 
-	https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
-	SET perssmion for docker.sock: 
+- Step 2 : Install Docker
+ 	https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
+	SET perssmion for docker.sock:
 		sudo chmod 666 /var/run/docker.sock
 	
-Step 3 : Install Kubectl 
+- Step 3 : Install Kubectl 
 	https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 	
-Step 4 : Install npm and node
+- Step 4 : Install npm and node
 	https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html
 	https://linux.how2shout.com/how-to-install-node-and-npm-on-amazon-linux-2-aws-ec2/
 	Run command to install
 		sudo yum install nodejs npm
 
-Step 5 : Intall git if not
-	sudo yum install git -y
+- Step 5 : Intall git if not
+- 	sudo yum install git -y
 	
-Step 6 : Access to Jenkins server
+- Step 6 : Access to Jenkins server
 	Install AWS Pipeline plugin --> to access to aws resource
 	Install Kubenetes Plugin
