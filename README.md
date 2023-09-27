@@ -54,7 +54,7 @@ Step to install a Jenkins server on EC2
 	
 - Step 4 : Install npm and node\
 	https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html\
-	https://linux.how2shout.com/how-to-install-node-and-npm-on-amazon-linux-2-aws-ec2/\
+	https://linux.how2shout.com/how-to-install-node-and-npm-on-amazon-linux-2-aws-ec2 \
 	Run command to install
   		```
 		sudo yum install nodejs npm
