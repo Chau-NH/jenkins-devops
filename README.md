@@ -36,3 +36,6 @@ npm test
 # Deploy to PROD
 
 ```
+
+#### Install Jenkins on AWS EC2
+Reference: https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
