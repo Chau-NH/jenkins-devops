@@ -73,11 +73,13 @@ Step to install a Jenkins server on EC2
 	HTML Publisher plugin
 
 
-### Set up for HTML Publisher plugin
+### Set up for HTML Publisher plugin to load CSS and JS
 
 1. Open the Jenkin home page.
 2. Go to Manage Jenkins.
 3. Now go to Script Console.
-4. And in that console paste below statement and click on Run. 
-```System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")```
-After that it will load css and js.
+4. And in that console paste below statement and click on Run.
+```
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+```
+
