@@ -27,7 +27,7 @@ void call(Map pipelineParams) {
             stage ("Trivy Scan Secret") {
                 steps {
                         script {
-                        sh "sudo trivy fs --security-checks secret --exit-code 0 --format template --template @.ci/html.tpl -o .ci/secretreport.html ."
+                        sh "trivy fs --security-checks secret --exit-code 0 --format template --template @.ci/html.tpl -o .ci/secretreport.html ."
                         publishHTML (target : [allowMissing: true,
                             alwaysLinkToLastBuild: true,
                             keepAll: true,
