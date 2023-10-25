@@ -17,22 +17,26 @@ void call(Map pipelineParams) {
             }
 
             stage ('Prepare Package') {
-                script {
-                    writeFile file: '.ci/html.tpl', text: libraryResource('trivy/html.tpl')
+                steps {
+                    script {
+                        writeFile file: '.ci/html.tpl', text: libraryResource('trivy/html.tpl')
+                    }
                 }
             }
 
             stage ("Trivy Scan Secret") {
-                script {
-                    sh "trivy fs . --scanners secret --exit-code 0 --format template --template @.ci/html.tpl -o .ci/secretreport.html"
-                    publishHTML (target : [allowMissing: true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: '.ci',
-                        reportFiles: 'secretreport.html',
-                        reportName: 'Trivy Secrets Report',
-                        reportTitles: 'Trivy Secrets Report']
-                    )
+                steps {
+                        script {
+                        sh "trivy fs . --scanners secret --exit-code 0 --format template --template @.ci/html.tpl -o .ci/secretreport.html"
+                        publishHTML (target : [allowMissing: true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: '.ci',
+                            reportFiles: 'secretreport.html',
+                            reportName: 'Trivy Secrets Report',
+                            reportTitles: 'Trivy Secrets Report']
+                        )
+                    }
                 }
             }
             
