@@ -48,16 +48,18 @@ void call(Map pipelineParams) {
             }
 
             stage ("Trivy Scan Vulnerabilities") {
-                script {
-                    sh "trivy fs . --severity HIGH,CRITICAL --security-checks vuln --exit-code 0 --format template --template @.ci/html.tpl -o .ci/vulnreport.html ."
-                    publishHTML (target : [allowMissing: true,
-                        alwaysLinkToLastBuild: true,
-                        keepAll: true,
-                        reportDir: '.ci',
-                        reportFiles: 'vulnreport.html',
-                        reportName: 'Trivy Vulnerabilities Report',
-                        reportTitles: 'Trivy Vulnerabilities Report']
-                    )
+                steps {
+                        script {
+                        sh "trivy fs --severity HIGH,CRITICAL --security-checks vuln --exit-code 0 --format template --template @.ci/html.tpl -o .ci/vulnreport.html ."
+                        publishHTML (target : [allowMissing: true,
+                            alwaysLinkToLastBuild: true,
+                            keepAll: true,
+                            reportDir: '.ci',
+                            reportFiles: 'vulnreport.html',
+                            reportName: 'Trivy Vulnerabilities Report',
+                            reportTitles: 'Trivy Vulnerabilities Report']
+                        )
+                    }
                 }
             }
 
