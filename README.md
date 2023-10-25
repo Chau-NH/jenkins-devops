@@ -65,10 +65,22 @@ Step to install a Jenkins server on EC2
  	sudo yum install git -y
  	```
 - Step 6 : Install Trivy
-	https://aquasecurity.github.io/trivy/v0.18.3/installation/
+	https://aquasecurity.github.io/trivy/v0.29.2/getting-started/installation/
 	
 - Step 7 : Access to Jenkins server\
 	Install AWS Pipeline plugin --> to access to aws resource\
 	Install Kubenetes Plugin
 	HTML Publisher plugin
 
+
+*** Set up for HTML Publisher plugin
+
+1. Open the Jenkin home page.
+2. Go to Manage Jenkins.
+3. Now go to Script Console.
+4. And in that console paste below statement and click on Run. 
+```
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+
+```
+After that it will load css and js.
