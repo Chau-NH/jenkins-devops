@@ -15,6 +15,26 @@ void call(Map pipelineParams) {
                     sh 'git pull'
                 }
             }
+
+            stage ('Prepare Package') {
+                script {
+                    writeFile file: '.ci/html.tpl', text: libraryResource('trivy/html.tpl')
+                }
+            }
+
+            stage ("Trivy Scan Secret") {
+                script {
+                    sh "trivy fs . --scanners secret --exit-code 0 --format template --template @.ci/html.tpl -o .ci/secretreport.html"
+                    publishHTML (target : [allowMissing: true,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: '.ci',
+                        reportFiles: 'secretreport.html',
+                        reportName: 'Trivy Secrets Report',
+                        reportTitles: 'Trivy Secrets Report']
+                    )
+                }
+            }
             
             stage('Install Dependencies') {
                 steps {
@@ -22,6 +42,20 @@ void call(Map pipelineParams) {
                     sh 'npm install'
                 }
             }
+
+            // stage ("Trivy Scan Vulnerabilities") {
+            //     script {
+            //         sh "trivy fs . --severity HIGH,CRITICAL --scanners vuln --exit-code 0 --format template --template @.ci/html.tpl -o .ci/vulnreport.html"
+            //         publishHTML (target : [allowMissing: true,
+            //             alwaysLinkToLastBuild: true,
+            //             keepAll: true,
+            //             reportDir: '.ci',
+            //             reportFiles: 'vulnreport.html',
+            //             reportName: 'Trivy Vulnerabilities Report',
+            //             reportTitles: 'Trivy Vulnerabilities Report']
+            //         )
+            //     }
+            // }
 
             stage('Test') {
                 steps {

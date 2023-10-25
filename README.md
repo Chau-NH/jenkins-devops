@@ -1,7 +1,7 @@
 # jenkins-devpos
 Apply a Shared Library to Jenkins CI pipeline
 
-##### Explanation of backend(Node.js) `backendPipeline.groovy`
+#### Explanation of backend(Node.js) `backendPipeline.groovy`
 - Run CI/CD for backend service
 ```bash
 # Checkout main branch of git repo
@@ -19,7 +19,7 @@ npm test
 
 ```
 
-##### Explanation of frontend(ReactJS) `frontendPipeline.groovy`
+#### Explanation of frontend(ReactJS) `frontendPipeline.groovy`
 - Run CI/CD for frontend service
 ```bash
 # Checkout main branch of git repo
@@ -64,7 +64,11 @@ Step to install a Jenkins server on EC2
 	``` 
  	sudo yum install git -y
  	```
+- Step 6 : Install Trivy
+	https://aquasecurity.github.io/trivy/v0.18.3/installation/
 	
-- Step 6 : Access to Jenkins server\
+- Step 7 : Access to Jenkins server\
 	Install AWS Pipeline plugin --> to access to aws resource\
 	Install Kubenetes Plugin
+	HTML Publisher plugin
+
