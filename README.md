@@ -68,8 +68,8 @@ Step to install a Jenkins server on EC2
 	https://aquasecurity.github.io/trivy/v0.29.2/getting-started/installation/
 	
 - Step 7 : Access to Jenkins server\
-	Install AWS Pipeline plugin --> to access to aws resource\
-	Install Kubenetes Plugin
+	Install Pipeline AWS Steps plugin --> to access to aws resource\
+	Install Kubenetes Plugin\
 	HTML Publisher plugin
 
 
