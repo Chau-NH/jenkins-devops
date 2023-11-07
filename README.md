@@ -43,8 +43,8 @@ Step to install a Jenkins server on EC2
 	https://www.jenkins.io/doc/tutorials/tutorial-for-installing-jenkins-on-AWS/
 	
 - Step 2 : Install Docker\
- 	https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/\
-	SET perssmion for docker.sock:\
+ 	https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2 \
+	SET perssmion for docker.sock: \
 		```
 		sudo chmod 666 /var/run/docker.sock
   		```
